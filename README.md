@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/f5ac2d73-0e50-45f2-abf0-3f696f936484)<h1 align="center">🧙‍♂️ React optimization techniques 🧙‍♂️</h1> 
+<h1 align="center">🧙‍♂️ React optimization techniques 🧙‍♂️</h1> 
 In this project i put hands-on working in React optimization techniques going throught memo(), useMemo(), clever structuring and one optimization compiler called Million js
 
 ## ⚙️ Using memo() ⚙️
