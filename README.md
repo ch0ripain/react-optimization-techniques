@@ -90,7 +90,7 @@ function App() {
     </>
 ```
 
-## ⚙️ useMemo ⚙️ 
+## ⚙️ <code>useMemo()</code> ⚙️ 
 It is very common to have some complex and long functions that consume some computational time, so re-executing that function every time a component is re-rendered could lead to a performance downgrade.
 ```javascript
 const initialCountIsPrime = useMemo(
