@@ -1,5 +1,5 @@
 <h1 align="center">🧙‍♂️ React optimization techniques 🧙‍♂️</h1> 
-In this project i put hands-on working in React optimization techniques going through <code>memo()</code>, <code>useMemo()</code>, clever structuring and one optimization compiler called MillionJS
+In this project i put hands-on working in React optimization techniques going through <code>memo()</code>, <code>useMemo()</code>, <strong>Clever Structuring</strong> and one optimization compiler called MillionJS
 
 ## ⚙️ Using <code>memo()</code> ⚙️
 <code>memo()</code> is a utility provided by React that helps prevent unnecessary re-renders of a component when its props remain unchanged.
@@ -27,7 +27,7 @@ With this approach, <code>memo()</code> is used effectively.
 > [!NOTE]
 > It's common practice to wrap functions passed as props in useCallback() when using <code>memo()</code> or useEffect()
 
-## 🧩️ Clever Structuring 🧩️
+## 🧩️ <strong>Clever Structuring</strong> 🧩️
 Sometimes it can be normal to want to wrap all our components in a <code>memo()</code> but that will be unproductive and highly inadvisable since memo only needs to be used in a key component that groups a few or a group of components that do not need to be re-rendered. We can handle all that behavior in a common component with <code>memo()</code> if we think it is the better approach.
 ```javascript
 const Counter = memo(function Counter({ initialCount }) {
@@ -112,8 +112,8 @@ That's it! You're all set up 🎉
 
 
 That's all for this project, in conclusion:
-- <code>memo()</code> ➡️ try to memoize a common component and keep an eye on the properties to avoid unnecessary renderings like function recreations (useCallback()) or frequently state changes (clever structuring)
+- <code>memo()</code> ➡️ try to memoize a common component and keep an eye on the properties to avoid unnecessary renderings like function recreations (useCallback()) or frequently state changes (<strong>Clever Structuring</strong>)
 - <code>useMemo()</code> ➡️ memoize the computed value of a long and complex function that can take some time and only re-execute when a dependency changes.
-- Clever Structuring ➡️ Allow me to make more agile and readable code by taking advantage of React's way of thinking and avoiding unnecessary hooks.
+- <strong>Clever Structuring</strong> ➡️ Allow me to make more agile and readable code by taking advantage of React's way of thinking and avoiding unnecessary hooks.
 
 <p align="center">🌟 This project is a practice exercise I learned from the <a href='https://www.udemy.com/course/react-the-complete-guide-incl-redux/?couponCode=ST7MT110524'>Academind's React Course</a> 🌟</p>
