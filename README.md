@@ -1,5 +1,5 @@
 <h1 align="center">🧙‍♂️ React optimization techniques 🧙‍♂️</h1> 
-In this project i put hands-on working in React optimization techniques going through <code>memo()</code>, <code>useMemo()</code>, clever structuring and one optimization compiler called Million js
+In this project i put hands-on working in React optimization techniques going through <code>memo()</code>, <code>useMemo()</code>, clever structuring and one optimization compiler called MillionJS
 
 ## ⚙️ Using <code>memo()</code> ⚙️
 <code>memo()</code> is a utility provided by React that helps prevent unnecessary re-renders of a component when its props remain unchanged.
@@ -108,7 +108,7 @@ Million.js replace React's virtual DOM with a faster, lightweight virtual DOM, e
 On installation, you'll be prompted to install the Million Lint build plugin and VSCode extension.
 That's it! You're all set up 🎉
 
-[See Million JS docs](https://million.dev/docs)
+[See MillionJS docs](https://million.dev/docs)
 
 
 That's all for this project, in conclusion:
