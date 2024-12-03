@@ -1,5 +1,5 @@
 <h1 align="center">🧙‍♂️ React optimization techniques 🧙‍♂️</h1> 
-In this project i put hands-on working in React optimization techniques going through <code>⚙️ memo()</code>, <code>⚙️ useMemo()</code>, <strong>Clever Structuring 🧩️</strong> and one optimization compiler called <strong>MillionJS⚡️</strong>
+In this project i put hands-on working in React optimization techniques going through <code>⚙️ memo()</code>, <code>⚙️ useMemo()</code>, <strong>🧩️ Clever Structuring 🧩️</strong> and one optimization compiler called <strong>⚡️MillionJS⚡️</strong>
 
 ## ⚙️ Using <code>memo()</code> ⚙️
 <code>memo()</code> is a utility provided by React that helps prevent unnecessary re-renders of a component when its props remain unchanged.
