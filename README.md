@@ -100,13 +100,16 @@ const initialCountIsPrime = useMemo(
 ```
 <code>useMemo()</code> needs a function that should return the computed value we want to memoize and an array of dependencies (deps) to re-execute that function only when its dependencies change.
 
-## ⚡️ Million JS ⚡️
-Speed up your website by 70%
+## ⚡️ Million JS - Speed up your website by 70% ⚡️
+Million.js replace React's virtual DOM with a faster, lightweight virtual DOM, enabling more efficient updates and reducing rendering overhead.
 
-![image](https://github.com/user-attachments/assets/84dc4842-aebe-4f2e-9ff1-7ecf1d446340)
+<code>npx million@latest</code>
 
 On installation, you'll be prompted to install the Million Lint build plugin and VSCode extension.
 That's it! You're all set up 🎉
+
+[See Million JS docs](https://million.dev/docs)
+
 
 That's all for this project, in conclusion:
 - <code>memo()</code> ➡️ try to memoize a common component and keep an eye on the properties to avoid unnecessary renderings like function recreations (useCallback()) or frequently state changes (clever structuring)
