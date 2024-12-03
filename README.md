@@ -1,51 +1,46 @@
 <h1 align="center">🧙‍♂️ React optimization techniques 🧙‍♂️</h1> 
-In this project i put hands-on working in React optimization techniques going throught memo(), useMemo(), clever structuring and one optimization compiler called Million js
+In this project i put hands-on working in React optimization techniques going through <code>memo()</code>, <code>useMemo()</code>, clever structuring and one optimization compiler called Million js
 
-## ⚙️ Using memo() ⚙️
-Memo is a react library functionality that allow me to avoid re-renders when the props doesn't change.
+## ⚙️ Using <code>memo()</code> ⚙️
+<code>memo()</code> is a utility provided by React that helps prevent unnecessary re-renders of a component when its props remain unchanged.
+```javascript
 const IconButton = memo(function IconButton({ children, icon, ...props }) {
-  log("<IconButton /> rendered", 2);
-
-  const Icon = icon;
-  return (
-    <button {...props} className="button">
-      <Icon className="button-icon" />
-      <span className="button-text">{children}</span>
-    </button>
-  );
+  ...
 });
 
 export default IconButton;
+```
 
-How it seen above memo need our component function as a argument to work and that's all. 
-What memo do is to memoize our component so in the next re-renders caused by dad components this memoized component will not be re-rendered as long as their props don't change.
-Looking at their props we see
-- children => who never changes since it's a static value
-- icon => also never changes cause it's a external svg component wich is always the same icon
-- ...props => here we have a onClick functionality that leads to a function wich will change in each re-render
-
-To avoid those unnecesary re-renders caused by function recreation we need to involve that function in a useCallback()
+In the example above, <code>memo()</code> takes a component function as an argument and memoizes it. When a parent component re-renders, the memoized component won't re-render unless its props change.
+- children ➡️ This is static and does not change.
+- icon ➡️ This is an external SVG component, always the same.
+- ...props ➡️ Includes an onClick handler that could change on every render due to function recreation.
+- 
+To address unnecessary re-renders caused by recreated functions, you can wrap the function in useCallback():
 
   const handleDecrement = useCallback(function handleDecrement() {
-    setCounter((prevCounter) => prevCounter - 1);
+    ...
   }, []);
 
-And with all that memo is going to be used in the right way
+With this approach, <code>memo()</code> is used effectively.
 
 > [!NOTE]
-> It's a common practice to wrap our functions props in useCallback() whilst using memo
+> It's common practice to wrap functions passed as props in useCallback() when using <code>memo()</code> or useEffect()
 
 ## 🧩️ Clever Structuring 🧩️
-Sometimes it could be normal to want to wrap all our components in a memo() function but that will result unproductive and highly unrecommended since memo just need to be use in the most topside component that group few or a bunch of components that don't need to be re-rendered and we can manage that behaviour on a common component with memo().
+Sometimes it can be normal to want to wrap all our components in a <code>memo()</code> but that will be unproductive and highly inadvisable since memo only needs to be used in a key component that groups a few or a group of components that do not need to be re-rendered. We can handle all that behavior in a common component with <code>memo()</code> if we think it is the better approach.
+```javascript
 const Counter = memo(function Counter({ initialCount }) {
-...
+...some components
 }
 export default Counter;
+```
+This Counter component in my React app will always be modified by that property, since the counter property is always changing because that's the behavior I want in my app.
+The use of <code>memo()</code> here is a bit pointless because there are no useful cases to avoid re-rendering.
 
-This Counter component on my react app will always be changed by that prop since the counter prop is always changing because that the behaviour i want in my app.
-Using memo() here it's kind of useless because there is no useful cases to avoid re-renders.
+In this case a better approach will be a clever structure
 
-In this case we can opt for use a clever structuring way.
+```javascript
 //CODE WITH MEMO
 function App() {
   log('<App /> rendered');
@@ -70,10 +65,11 @@ function App() {
           <input type="number" onChange={handleChange} value={enteredNumber} />
           <button onClick={handleSetClick}>Set</button>
         </section>
-        <Counter initialCount={chosenCount} /> //notice that this component is always being re-rendered caused that chosenCount prop changing
+        <Counter initialCount={chosenCount} /> //Notice that this component is being re-rendered caused that chosenCount prop is changing frequently caused by some state
       ...
     </>
-
+```
+```javascript
 //CODE WITH CLEVER STRUCTURING
 function App() {
   log("<App /> rendered");
@@ -88,24 +84,33 @@ function App() {
     <>
       <Header />
       <main>
-        <ConfigureCounter onSet={handleSetCount} /> //now all that state behaviour are on their own component
-        <Counter initialCount={chosenCount} /> //Counter now is not being re-rendered always just when it need it
+        <ConfigureCounter onSet={handleSetCount} /> //Now all that state behaviour are in a separate component.
+        <Counter initialCount={chosenCount} /> //Counter now only re-renders when its props actually change.
       </main>
     </>
-
-As you can see in the previous examples memo() and clever structuring could be very useful in some scenaries and more powerfull to improve our react app perfomance.
+```
 
 ## ⚙️ useMemo ⚙️ 
-In our react app it's very common to have some complex and longe functions which take some computational time so re-executed that function every time a component is re-rendered it could be a performance downgrade.
+It is very common to have some complex and long functions that consume some computational time, so re-executing that function every time a component is re-rendered could lead to a performance downgrade.
+```javascript
 const initialCountIsPrime = useMemo(
     () => isPrime(initialCount),
     [initialCount]
   );
-useMemo() need a function wich must return the computed value we want to memoize and the an array of dependencies (deps) to re-execute that function only when it's need it.
+```
+<code>useMemo()</code> needs a function that should return the computed value we want to memoize and an array of dependencies (deps) to re-execute that function only when its dependencies change.
 
-So that all for this project, in conclusion:
-- memo() => try to memoize a commmon component and take a look to the props to avoid unnecesary re-renders like functions recreations or state always changing (clever structure)
-- useMemo() => memoize the computed value of a longe and complex function that might take some time and only be re-executed when a deps change.
-- Clever Structure => Let me to make a more leaner and readable code leveraging the react thinking way and avoiding unnecesary hooks.
+## ⚡️ Million JS ⚡️
+Speed up your website by 70%
+
+![image](https://github.com/user-attachments/assets/84dc4842-aebe-4f2e-9ff1-7ecf1d446340)
+
+On installation, you'll be prompted to install the Million Lint build plugin and VSCode extension.
+That's it! You're all set up 🎉
+
+That's all for this project, in conclusion:
+- <code>memo()</code> ➡️ try to memoize a common component and keep an eye on the properties to avoid unnecessary renderings like function recreations (useCallback()) or frequently state changes (clever structuring)
+- <code>useMemo()</code> ➡️ memoize the computed value of a long and complex function that can take some time and only re-execute when a dependency changes.
+- Clever Structuring ➡️ Allow me to make more agile and readable code by taking advantage of React's way of thinking and avoiding unnecessary hooks.
 
 <p align="center">🌟 This project is a practice exercise I learned from the <a href='https://www.udemy.com/course/react-the-complete-guide-incl-redux/?couponCode=ST7MT110524'>Academind's React Course</a> 🌟</p>
