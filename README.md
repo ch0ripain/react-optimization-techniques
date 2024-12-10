@@ -116,4 +116,5 @@ That's all for this project, in conclusion:
 - <code>useMemo()</code> ➡️ memoize the computed value of a long and complex function that can take some time and only re-execute when a dependency changes.
 - <strong>Clever Structuring</strong> ➡️ Allow me to make more agile and readable code by taking advantage of React's way of thinking and avoiding unnecessary hooks.
 
+---
 <p align="center">🌟 This project is a practice exercise I learned from the <a href='https://www.udemy.com/course/react-the-complete-guide-incl-redux/?couponCode=ST7MT110524'>Academind's React Course</a> 🌟</p>
